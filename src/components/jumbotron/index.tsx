@@ -21,7 +21,7 @@ interface ImageProps {
   alt: string;
 }
 
-interface CompoundComponent {
+interface Compound {
   Container: React.FC<ContainerProps>;
   Pane: React.FC<PaneProps>;
   Title: React.FC<TitleProps>;
@@ -29,7 +29,7 @@ interface CompoundComponent {
   Image: React.FC<ImageProps>;
 }
 
-const Jumbotron: React.FC<Props> & CompoundComponent = ({
+const Jumbotron: React.FC<Props> & Compound = ({
   children,
   direction = "row",
   ...restProps
