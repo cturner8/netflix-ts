@@ -1,5 +1,6 @@
-import { Accordion, OptForm } from "../components";
+import { Accordion } from "../components";
 import faqsData from "../fixtures/faqs.json";
+import { OptFormContainer } from "./OptForm";
 
 interface Props {}
 
@@ -14,14 +15,7 @@ export const FaqsContainer: React.FC<Props> = () => {
         </Accordion.Item>
       ))}
 
-      <OptForm>
-        <OptForm.Input placeholder="Email address" />
-        <OptForm.Button>Try it now</OptForm.Button>
-        <OptForm.Break />
-        <OptForm.Text>
-          Ready to watch? Enter your email to create or restart your membership
-        </OptForm.Text>
-      </OptForm>
+      <OptFormContainer />
     </Accordion>
   );
 };
