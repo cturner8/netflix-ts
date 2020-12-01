@@ -1,3 +1,4 @@
+import { ImgHTMLAttributes } from "react";
 import {
   Inner,
   Container,
@@ -16,10 +17,7 @@ interface ContainerProps {}
 interface PaneProps {}
 interface TitleProps {}
 interface SubTitleProps {}
-interface ImageProps {
-  src: string;
-  alt: string;
-}
+interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {}
 
 interface Compound {
   Container: React.FC<ContainerProps>;

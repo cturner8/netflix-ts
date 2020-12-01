@@ -1,10 +1,9 @@
+import { InputHTMLAttributes } from "react";
 import { Container, Input, Button, TextC, Break } from "./styles/opt-form";
 
 interface Props {}
 
-interface InputProps {
-  placeholder: string;
-}
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {}
 interface ButtonProps {}
 interface TextProps {}
 interface BreakProps {}

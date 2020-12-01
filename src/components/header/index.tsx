@@ -1,3 +1,4 @@
+import { ImgHTMLAttributes } from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import { Background, Container, Logo, ButtonLink } from "./styles/header";
 
@@ -7,10 +8,8 @@ export interface Props {
 }
 
 interface FrameProps {}
-interface LogoProps {
+interface LogoProps extends ImgHTMLAttributes<HTMLImageElement> {
   to: string;
-  alt: string;
-  src: string;
 }
 interface ButtonLinkProps {
   to: string;
