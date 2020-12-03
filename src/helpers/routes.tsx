@@ -2,15 +2,13 @@ import { Route, Redirect, RouteProps } from "react-router-dom";
 import * as routes from "../constants/routes";
 import { FirebaseUser } from "../lib/firebase";
 
-type User = FirebaseUser | null;
-
 interface IsUserRedirectProps extends RouteProps {
-  user: User;
+  user: FirebaseUser;
   loggedInPath: string;
 }
 
 interface ProtectedRouteProps extends RouteProps {
-  user: User;
+  user: FirebaseUser;
 }
 
 export const IsUserRedirect: React.FC<IsUserRedirectProps> = ({

@@ -15,6 +15,6 @@ const config = {
 const firebaseApp = firebase.initializeApp(config);
 
 export type FirebaseApp = firebase.app.App;
-export type FirebaseUser = firebase.User;
+export type FirebaseUser = firebase.User | null;
 
 export { firebaseApp as firebase };
