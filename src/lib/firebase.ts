@@ -16,5 +16,6 @@ const firebaseApp = firebase.initializeApp(config);
 
 export type FirebaseApp = firebase.app.App;
 export type FirebaseUser = firebase.User | null;
+export type FirestoreDocument = firebase.firestore.DocumentData;
 
 export { firebaseApp as firebase };

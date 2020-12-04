@@ -1,3 +1,11 @@
+import { BrowseContainer } from "../containers/Browse";
+import { useContent } from "../hooks";
+import { selectionFilter } from "../utils";
+
 export const Browse = () => {
-  return <p>hello from browse</p>;
+  const { series } = useContent("series");
+  const { films } = useContent("films");
+  const slides = selectionFilter({ series, films });
+
+  return <BrowseContainer slides={slides} />;
 };
