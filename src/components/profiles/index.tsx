@@ -1,13 +1,11 @@
-import { ImgHTMLAttributes, MouseEvent } from "react";
+import { ImgHTMLAttributes, LiHTMLAttributes } from "react";
 import { Container, Title, List, Item, Picture, Name } from "./styles/profiles";
 
 interface Props {}
 
 interface TitleProps {}
 interface ListProps {}
-interface UserProps {
-  onClick: (event: MouseEvent<HTMLDivElement, MouseEvent>) => void;
-}
+interface UserProps extends LiHTMLAttributes<HTMLLIElement> {}
 interface PictureProps extends ImgHTMLAttributes<HTMLImageElement> {}
 interface NameProps {}
 
@@ -31,7 +29,7 @@ const PList: React.FC<ListProps> = ({ children, ...restProps }) => {
   return <List {...restProps}>{children}</List>;
 };
 
-const PUser: React.FC<UserProps> = ({ onClick, children, ...restProps }) => {
+const PUser: React.FC<UserProps> = ({ children, ...restProps }) => {
   return <Item {...restProps}>{children}</Item>;
 };
 

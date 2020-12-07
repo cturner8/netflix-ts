@@ -1,12 +1,16 @@
 import styled from "styled-components/macro";
-import { Link } from "react-router-dom";
-import { Props } from "../";
+import { Link as RLink } from "react-router-dom";
+import { Props, TextLinkProps, PictureProps } from "../";
 
 export const Background = styled.div<Props>`
   display: flex;
   flex-direction: column;
   background: url(${({ src }) => src ? `../images/misc/${src}.jpg` : "../images/misc/home-bg.jpg"})
     top left / cover no-repeat;
+
+  @media (max-width: 1100px) {
+    ${({ dontShowSmallViewPort}) => dontShowSmallViewPort && `background: none`}
+  }
 `;
 
 export const Container = styled.div`
@@ -37,7 +41,7 @@ export const Logo = styled.img`
   }
 `;
 
-export const ButtonLink = styled(Link)`
+export const ButtonLink = styled(RLink)`
   display: block;
   background-color: #e50914;
   width: 84px;
@@ -53,5 +57,109 @@ export const ButtonLink = styled(Link)`
 
   &:hover {
     background-color: #f40612;
+  }
+`;
+
+export const Feature = styled(Container)`
+  padding: 150px 0 500px 0;
+  flex-direction: column;
+  align-items: normal;
+  width: 50%;
+  @media (max-width: 1100px) {
+    display: none;
+  }
+`;
+
+export const Text = styled.p`
+  color: white;
+  font-size: 22px;
+  line-height: normal;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+`;
+
+export const FeatureCallOut = styled.h2`
+  color: white;
+  font-size: 50px;
+  line-height: normal;
+  font-weight: bold;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.45);
+  margin: 0;
+  margin-bottom: 20px;
+`;
+
+export const Link = styled.p<TextLinkProps>`
+  color: #fff;
+  text-decoration: none;
+  margin-right: 30px;
+  font-weight: ${({ active }) => (active === 'true' ? '700' : 'normal')};
+  cursor: pointer;
+  &:hover {
+    font-weight: bold;
+  }
+  &:last-of-type {
+    margin-right: 0;
+  }
+`;
+
+export const Group = styled.div`
+  display: flex;
+  align-items: center;
+`;
+
+export const Picture = styled.button<PictureProps>`
+  background: url(${({ src }) => src});
+  background-size: contain;
+  border: 0;
+  width: 32px;
+  height: 32px;
+  cursor: pointer;
+`;
+
+export const Dropdown = styled.div`
+  display: none;
+  position: absolute;
+  background-color: black;
+  padding: 10px;
+  width: 100px;
+  top: 32px;
+  right: 10px;
+  ${Group}:last-of-type ${Link} {
+    cursor: pointer;
+  }
+  ${Group} {
+    margin-bottom: 10px;
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+    ${Link} {
+      cursor: pointer;
+    }
+    ${Picture} {
+      cursor: default;
+    }
+  }
+  button {
+    margin-right: 10px;
+  }
+  p {
+    font-size: 12px;
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+`;
+
+export const Profile = styled.div`
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  position: relative;
+  
+  button {
+    cursor: pointer;
+  }
+
+  &:hover > ${Dropdown} {
+    display: flex;
+    flex-direction: column;
   }
 `;
