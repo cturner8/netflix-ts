@@ -1,9 +1,4 @@
-import { FirestoreDocument } from "../lib/firebase";
-
-interface Collections {
-  series: FirestoreDocument[];
-  films: FirestoreDocument[];
-}
+import { Collections } from "../types";
 
 export const selectionFilter = ({ series = [], films = [] }: Collections) => {
   return {

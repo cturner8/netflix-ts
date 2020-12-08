@@ -1,4 +1,11 @@
-import { ImgHTMLAttributes } from "react";
+import {
+  ImgHTMLAttributes,
+  HTMLAttributes,
+  useState,
+  Dispatch,
+  SetStateAction,
+  InputHTMLAttributes,
+} from "react";
 import { Link as ReactRouterLink } from "react-router-dom";
 import {
   Background,
@@ -13,6 +20,10 @@ import {
   Picture,
   Dropdown,
   Profile,
+  Search,
+  SearchInput,
+  SearchIcon,
+  PlayButton,
 } from "./styles/header";
 
 export interface Props {
@@ -37,10 +48,25 @@ interface ButtonLinkProps {
 interface DropdownProps {}
 interface FeatureProps {}
 interface TextProps {}
-export interface TextLinkProps {
+export interface TextLinkProps extends HTMLAttributes<HTMLParagraphElement> {
   active: "true" | "false";
 }
+
 interface FeatureCallOutProps {}
+
+type SearchTerm = string;
+type SetSearchTerm = Dispatch<SetStateAction<SearchTerm>>;
+interface SearchTermProps {
+  searchTerm: SearchTerm;
+  setSearchTerm: SetSearchTerm;
+}
+
+export interface SearchInputProps
+  extends InputHTMLAttributes<HTMLInputElement> {
+  active: boolean;
+}
+
+interface PlayButtonProps {}
 
 interface Compound {
   Frame: React.FC<FrameProps>;
@@ -54,6 +80,8 @@ interface Compound {
   Picture: React.FC<PictureProps>;
   Profile: React.FC<ProfileProps>;
   Dropdown: React.FC<DropdownProps>;
+  SearchTerm: React.FC<SearchTermProps>;
+  PlayButton: React.FC<PlayButtonProps>;
 }
 
 const Header: React.FC<Props> & Compound = ({
@@ -82,6 +110,28 @@ const HPicture: React.FC<PictureProps> = ({ src, ...restProps }) => {
 
 const HProfile: React.FC<ProfileProps> = ({ children, ...restProps }) => {
   return <Profile {...restProps}>{children}</Profile>;
+};
+
+const HSearchTerm: React.FC<SearchTermProps> = ({
+  searchTerm,
+  setSearchTerm,
+  ...restProps
+}) => {
+  const [searchActive, setSearchActive] = useState(false);
+
+  return (
+    <Search {...restProps}>
+      <SearchIcon onClick={() => setSearchActive((prevActive) => !prevActive)}>
+        <img src="/images/icons/search.png" alt="Search" />
+      </SearchIcon>
+      <SearchInput
+        value={searchTerm}
+        onChange={({ target }) => setSearchTerm(target.value)}
+        placeholder="Search films and series"
+        active={searchActive}
+      />
+    </Search>
+  );
 };
 
 const HLogo: React.FC<LogoProps> = ({ to, ...restProps }) => {
@@ -119,6 +169,10 @@ const HTextLink: React.FC<TextLinkProps> = ({ children, ...restProps }) => {
   return <Link {...restProps}>{children}</Link>;
 };
 
+const HPlayButton: React.FC<PlayButtonProps> = ({ children, ...restProps }) => {
+  return <PlayButton {...restProps}>{children}</PlayButton>;
+};
+
 Header.Frame = HFrame;
 Header.Group = HGroup;
 Header.Logo = HLogo;
@@ -130,5 +184,7 @@ Header.FeatureCallOut = HFeatureCallOut;
 Header.Picture = HPicture;
 Header.Profile = HProfile;
 Header.Dropdown = HDropdown;
+Header.SearchTerm = HSearchTerm;
+Header.PlayButton = HPlayButton;
 
 export { Header };
