@@ -1,4 +1,10 @@
-import { createContext, useState, useContext, HTMLAttributes } from "react";
+import {
+  createContext,
+  useState,
+  useContext,
+  HTMLAttributes,
+  ImgHTMLAttributes,
+} from "react";
 import {
   Container,
   Group,
@@ -16,15 +22,14 @@ import {
   Content,
   Entities,
 } from "./styles/card";
+import { CategoryDocument } from "../../types";
 
 interface Props {}
 
-interface ItemFeature {}
-
 export interface GroupProps {
-  flexDirection: string;
-  alignItems: string;
-  margin: string;
+  flexDirection?: string;
+  alignItems?: string;
+  margin?: string;
 }
 
 interface TitleProps {}
@@ -32,12 +37,13 @@ interface SubTitleProps {}
 interface TextProps {}
 interface MetaProps {}
 interface ItemProps extends HTMLAttributes<HTMLDivElement> {
-  item: ItemFeature;
+  item: CategoryDocument;
 }
-interface ImageProps {}
+interface ImageProps extends ImgHTMLAttributes<HTMLImageElement> {}
 interface EntityProps {}
 export interface FeatureProps {
-  src: string;
+  src?: string;
+  category?: string;
 }
 export interface FeatureTextProps {
   fontWeight: string;
@@ -49,14 +55,23 @@ export interface MaturityProps {
 interface Context {
   showFeature: boolean;
   setShowFeature: Function;
-  itemFeature: ItemFeature;
+  itemFeature: CategoryDocument;
   setItemFeature: Function;
 }
+
+const initialItemFeature = {
+  docId: "",
+  title: "",
+  description: "",
+  genre: "",
+  maturity: 0,
+  slug: "",
+};
 
 export const FeatureContext = createContext<Context>({
   showFeature: false,
   setShowFeature: () => {},
-  itemFeature: {},
+  itemFeature: initialItemFeature,
   setItemFeature: () => {},
 });
 
@@ -69,11 +84,12 @@ interface Compound {
   Item: React.FC<ItemProps>;
   Image: React.FC<ImageProps>;
   Entities: React.FC<EntityProps>;
+  Feature: React.FC<FeatureProps>;
 }
 
 const Card: React.FC<Props> & Compound = ({ children, ...restProps }) => {
   const [showFeature, setShowFeature] = useState(false);
-  const [itemFeature, setItemFeature] = useState({});
+  const [itemFeature, setItemFeature] = useState(initialItemFeature);
 
   return (
     <FeatureContext.Provider
@@ -128,6 +144,44 @@ const CEntities: React.FC<EntityProps> = ({ children, ...restProps }) => {
   return <Entities {...restProps}>{children}</Entities>;
 };
 
+const CFeature: React.FC<FeatureProps> = ({
+  category,
+  children,
+  ...restProps
+}) => {
+  const { showFeature, itemFeature, setShowFeature } = useContext(
+    FeatureContext
+  );
+
+  return showFeature ? (
+    <Feature
+      {...restProps}
+      src={`/images/${category}/${itemFeature.genre}/${itemFeature.slug}/large.jpg`}
+    >
+      <Content>
+        <FeatureTitle>{itemFeature.title}</FeatureTitle>
+        <FeatureText fontWeight="">{itemFeature.description}</FeatureText>
+        <FeatureClose onClick={() => setShowFeature(false)}>
+          <img src="/images/icons/close.png" alt="close" />
+        </FeatureClose>
+
+        <Group margin="30px 0" flexDirection="row" alignItems="center">
+          <Maturity rating={itemFeature.maturity}>
+            {itemFeature.maturity < 12 ? "PG" : itemFeature.maturity}
+          </Maturity>
+          <FeatureText fontWeight="bold">
+            {itemFeature.genre.charAt(0).toUpperCase() +
+              itemFeature.genre.slice(1)}
+          </FeatureText>
+        </Group>
+        {children}
+      </Content>
+    </Feature>
+  ) : (
+    <></>
+  );
+};
+
 Card.Group = CGroup;
 Card.Title = CTitle;
 Card.SubTitle = CSubTitle;
@@ -136,5 +190,6 @@ Card.Meta = CMeta;
 Card.Item = CItem;
 Card.Image = CImage;
 Card.Entities = CEntities;
+Card.Feature = CFeature;
 
 export { Card };

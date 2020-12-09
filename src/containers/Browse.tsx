@@ -5,6 +5,8 @@ import { FirebaseUser, FirestoreDocument } from "../lib/firebase";
 import { Loading, Header, Card } from "../components";
 import * as routes from "../constants/routes";
 import logo from "../logo.svg";
+import { SelectionFilter } from "../types";
+import { FooterContainer } from "./Footer";
 
 interface Props {
   slides: {
@@ -16,7 +18,7 @@ export const BrowseContainer: React.FC<Props> = ({ slides }) => {
   const [category, setCategory] = useState("series");
   const [profile, setProfile] = useState<FirebaseUser>(null);
   const [loading, setLoading] = useState(true);
-  const [slideRows, setSlideRows] = useState<FirestoreDocument[]>([]);
+  const [slideRows, setSlideRows] = useState<SelectionFilter[]>([]);
 
   const [searchTerm, setSearchTerm] = useState("");
   const { firebase } = useContext(FirebaseContext);
@@ -27,7 +29,12 @@ export const BrowseContainer: React.FC<Props> = ({ slides }) => {
   }, [profile?.displayName]);
 
   useEffect(() => {
-    setSlideRows(slides[category]);
+    setSlideRows(
+      slides[category].map((item) => ({
+        title: item.title,
+        data: item.data,
+      }))
+    );
   }, [slides, category]);
 
   const handleSignOut = async () => {
@@ -94,13 +101,34 @@ export const BrowseContainer: React.FC<Props> = ({ slides }) => {
         </Header.Feature>
       </Header>
 
-      <Card.Group flexDirection="" alignItems="" margin="">
+      <Card.Group>
         {slideRows.map((slideItem) => (
           <Card key={`${category}-${slideItem.title.toLowerCase()}`}>
             <Card.Title>{slideItem.title}</Card.Title>
+            <Card.Entities>
+              {slideItem.data.map((item) => (
+                <Card.Item key={item.docId} item={item}>
+                  <Card.Image
+                    src={`/images/${category}/${item.genre}/${item.slug}/small.jpg`}
+                  />
+                  <Card.Meta>
+                    <Card.SubTitle>{item.title}</Card.SubTitle>
+                    <Card.Text>{item.description}</Card.Text>
+                  </Card.Meta>
+                </Card.Item>
+              ))}
+            </Card.Entities>
+            <Card.Feature category={category}>
+              {/* <Player>
+                <Player.Button />
+                <Player.Video src="/videos/bunny.mp4" />
+              </Player> */}
+              <p>hello</p>
+            </Card.Feature>
           </Card>
         ))}
       </Card.Group>
+      <FooterContainer />
     </>
   ) : (
     <SelectProfileContainer user={user} setProfile={setProfile} />
