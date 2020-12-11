@@ -7,7 +7,7 @@ import {
   Dispatch,
 } from "react";
 import ReactDOM from "react-dom";
-import { Container, Button, Overlay, Inner, Close } from "./styles/player";
+import { Container, Button, Overlay, Inner } from "./styles/player";
 
 interface Props {}
 interface VideoProps extends VideoHTMLAttributes<HTMLVideoElement> {}
@@ -43,7 +43,7 @@ const PVideo: React.FC<VideoProps> = ({ src, ...restProps }) => {
 
   return showPlayer ? (
     ReactDOM.createPortal(
-      <Overlay onClick={() => setShowPlayer(false)}>
+      <Overlay onClick={() => setShowPlayer(false)} data-testid="player">
         <Inner>
           <video id="netflix-player" controls>
             <source src={src} type="video/mp4" />
