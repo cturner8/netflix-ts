@@ -8,3 +8,4 @@ export { Form } from "./form";
 export { Profiles } from "./profiles";
 export { Loading } from "./loading";
 export { Card } from "./card";
+export { Player } from "./player";

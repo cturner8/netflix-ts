@@ -1,8 +1,9 @@
 import { useContext, useState, useEffect } from "react";
+import Fuse from "fuse.js";
 import { SelectProfileContainer } from "./Profiles";
 import { FirebaseContext } from "../context/firebase";
 import { FirebaseUser, FirestoreDocument } from "../lib/firebase";
-import { Loading, Header, Card } from "../components";
+import { Loading, Header, Card, Player } from "../components";
 import * as routes from "../constants/routes";
 import logo from "../logo.svg";
 import { SelectionFilter } from "../types";
@@ -29,13 +30,22 @@ export const BrowseContainer: React.FC<Props> = ({ slides }) => {
   }, [profile?.displayName]);
 
   useEffect(() => {
-    setSlideRows(
-      slides[category].map((item) => ({
-        title: item.title,
-        data: item.data,
-      }))
-    );
+    setSlideRows(slides[category] as SelectionFilter[]);
   }, [slides, category]);
+
+  useEffect(() => {
+    const fuse = new Fuse(slideRows, {
+      keys: ["data.description", "data.title", "data.genre"],
+    });
+    const results = fuse.search(searchTerm).map(({ item }) => item);
+
+    if (slideRows.length && searchTerm.length > 3 && results.length) {
+      setSlideRows(results);
+    } else {
+      setSlideRows(slides[category] as SelectionFilter[]);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm]);
 
   const handleSignOut = async () => {
     try {
@@ -119,11 +129,10 @@ export const BrowseContainer: React.FC<Props> = ({ slides }) => {
               ))}
             </Card.Entities>
             <Card.Feature category={category}>
-              {/* <Player>
+              <Player>
                 <Player.Button />
                 <Player.Video src="/videos/bunny.mp4" />
-              </Player> */}
-              <p>hello</p>
+              </Player>
             </Card.Feature>
           </Card>
         ))}

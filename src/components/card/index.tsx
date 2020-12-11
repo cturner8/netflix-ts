@@ -4,6 +4,7 @@ import {
   useContext,
   HTMLAttributes,
   ImgHTMLAttributes,
+  Dispatch,
 } from "react";
 import {
   Container,
@@ -54,9 +55,9 @@ export interface MaturityProps {
 
 interface Context {
   showFeature: boolean;
-  setShowFeature: Function;
+  setShowFeature: Dispatch<React.SetStateAction<boolean>>;
   itemFeature: CategoryDocument;
-  setItemFeature: Function;
+  setItemFeature: Dispatch<React.SetStateAction<CategoryDocument>>;
 }
 
 const initialItemFeature = {
