@@ -30,7 +30,6 @@
     "collectCoverageFrom": [
       "<rootDir>/src/**/*.tsx",
       "<rootDir>/src/**/*.ts",
-      "!<rootDir>/src/App.tsx",
       "!<rootDir>/src/helpers/routes.tsx",
       "!<rootDir>/src/lib/firebase.ts",
       "!<rootDir>/src/index.tsx",
