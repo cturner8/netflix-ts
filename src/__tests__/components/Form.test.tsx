@@ -1,8 +1,4 @@
-import {
-  getByPlaceholderText,
-  render,
-  RenderResult,
-} from "@testing-library/react";
+import { render } from "@testing-library/react";
 import { Form } from "../../components";
 import * as routes from "../../constants/routes";
 

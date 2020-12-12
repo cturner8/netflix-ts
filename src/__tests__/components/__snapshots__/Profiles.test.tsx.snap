@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Profiles /> renders the profiles with populated data 1`] = `
+<div
+  class="profiles__Container-sc-149k7op-0 eDIFOv"
+>
+  <h1
+    class="profiles__Title-sc-149k7op-1 oqDkP"
+  >
+    Who's watching?
+  </h1>
+  <ul
+    class="profiles__List-sc-149k7op-2 kBQnWo"
+  >
+    <li
+      class="profiles__Item-sc-149k7op-5 dtcEua"
+    >
+      <img
+        class="profiles__Picture-sc-149k7op-4 dQrjeD"
+        data-testid="profile-picture"
+        src="/images/users//images/cameron.png.png"
+      />
+      <p
+        class="profiles__Name-sc-149k7op-3 hZflAM"
+      >
+        Cameron
+      </p>
+    </li>
+  </ul>
+</div>
+`;
+
+exports[`<Profiles /> renders the profiles with populated data but misc profile image 1`] = `
+<div
+  class="profiles__Container-sc-149k7op-0 eDIFOv"
+>
+  <h1
+    class="profiles__Title-sc-149k7op-1 oqDkP"
+  >
+    Who's watching?
+  </h1>
+  <ul
+    class="profiles__List-sc-149k7op-2 kBQnWo"
+  >
+    <li
+      class="profiles__Item-sc-149k7op-5 dtcEua"
+    >
+      <img
+        class="profiles__Picture-sc-149k7op-4 dQrjeD"
+        data-testid="profile-picture-misc"
+        src="/images/misc/loading.gif"
+      />
+      <p
+        class="profiles__Name-sc-149k7op-3 hZflAM"
+      >
+        Cameron
+      </p>
+    </li>
+  </ul>
+</div>
+`;
