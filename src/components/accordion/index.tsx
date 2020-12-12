@@ -29,11 +29,14 @@ type ToggleShow = boolean;
 type SetToggleShow = React.Dispatch<React.SetStateAction<ToggleShow>>;
 
 interface Context {
-  toggleShow?: ToggleShow;
-  setToggleShow?: SetToggleShow;
+  toggleShow: ToggleShow;
+  setToggleShow: SetToggleShow;
 }
 
-const ToggleContext = createContext<Context>({});
+const ToggleContext = createContext<Context>({
+  toggleShow: false,
+  setToggleShow: () => {},
+});
 
 const Accordion: React.FC<Props> & Compound = ({ children, ...restProps }) => {
   return (
@@ -64,9 +67,7 @@ const AItem: React.FC<ItemProps> = ({ children, ...restProps }) => {
 const AHeader: React.FC<HeaderProps> = ({ children, ...restProps }) => {
   const { toggleShow, setToggleShow } = useContext(ToggleContext);
   const onClick = () => {
-    if (setToggleShow) {
-      setToggleShow((prevToggle: ToggleShow) => !prevToggle);
-    }
+    setToggleShow((prevToggle) => !prevToggle);
   };
   const actionButton = toggleShow ? (
     <img src="/images/icons/close-slim.png" alt="close" />

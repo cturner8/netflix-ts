@@ -5,7 +5,7 @@ exports[`<Player /> renders the Player with a bunny video 1`] = `
   class="player__Container-sc-1hy9g06-0"
 >
   <button
-    class="player__Button-sc-1hy9g06-4 joMeLM"
+    class="player__Button-sc-1hy9g06-3 jdPvXj"
   >
     Play
   </button>
