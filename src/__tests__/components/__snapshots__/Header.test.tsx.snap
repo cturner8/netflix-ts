@@ -1,0 +1,133 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<Header /> renders the basic header with a background 1`] = `
+<div
+  class="header__Background-o8frjl-0 eJSPXA"
+  data-testid="header-bg"
+>
+  <div
+    class="header__Container-o8frjl-1 bwqZsE"
+  >
+    <p
+      class="header__Link-o8frjl-7 ebSJlD"
+    >
+      Hello I am a link!
+    </p>
+  </div>
+</div>
+`;
+
+exports[`<Header /> renders the basic header without a background 1`] = `
+<div
+  class="header__Container-o8frjl-1 bwqZsE"
+>
+  <p
+    class="header__Link-o8frjl-7 hPHHGD"
+  >
+    Hello I am a link!
+  </p>
+</div>
+`;
+
+exports[`<Header /> renders the full header with a background 1`] = `
+<div
+  class="header__Background-o8frjl-0 fagfLB"
+  data-testid="header-bg"
+  src="joker1"
+>
+  <div
+    class="header__Container-o8frjl-1 bwqZsE"
+  >
+    <div
+      class="header__Group-o8frjl-8 cZWEOE"
+    >
+      <p
+        class="header__Link-o8frjl-7 hPHHGD"
+      >
+        Series
+      </p>
+      <p
+        class="header__Link-o8frjl-7 ebSJlD"
+      >
+        Films
+      </p>
+    </div>
+    <div
+      class="header__Group-o8frjl-8 cZWEOE"
+    >
+      <div
+        class="header__Search-o8frjl-12 jJevlh"
+      >
+        <button
+          class="header__SearchIcon-o8frjl-13 iZnaJy"
+          data-testid="search-click"
+        >
+          <img
+            alt="Search"
+            src="/images/icons/search.png"
+          />
+        </button>
+        <input
+          class="header__SearchInput-o8frjl-14 gjOCLx"
+          data-testid="search-input"
+          placeholder="Search films and series"
+          value="joker"
+        />
+      </div>
+      <div
+        class="header__Profile-o8frjl-11 cQoCKg"
+      >
+        <button
+          class="header__Picture-o8frjl-9 kwudvj"
+          src="/images/users//images/cameron.png.png"
+        />
+        <div
+          class="header__Dropdown-o8frjl-10 fDnCnf"
+        >
+          <div
+            class="header__Group-o8frjl-8 cZWEOE"
+          >
+            <button
+              class="header__Picture-o8frjl-9 kwudvj"
+              src="/images/users//images/cameron.png.png"
+            />
+            <p
+              class="header__Link-o8frjl-7 hPHHGD"
+            >
+              Cameron
+            </p>
+          </div>
+          <div
+            class="header__Group-o8frjl-8 cZWEOE"
+          >
+            <p
+              class="header__Link-o8frjl-7 hPHHGD"
+            >
+              Sign out
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="header__Container-o8frjl-1 header__Feature-o8frjl-4 bwqZsE FBBwe"
+  >
+    <h2
+      class="header__FeatureCallOut-o8frjl-6 kDa-DuO"
+    >
+      Watch Joker Now
+    </h2>
+    <p
+      class="header__Text-o8frjl-5 kVXHcX"
+    >
+      Forever alone in a crowd...
+    </p>
+    <button
+      class="header__PlayButton-o8frjl-15 lekdEZ"
+    >
+      Play
+    </button>
+  </div>
+</div>
+`;

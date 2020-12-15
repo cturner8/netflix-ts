@@ -15,6 +15,6 @@ export interface SelectionFilter {
 }
 
 export interface Collections {
-  series: FirestoreDocument[];
-  films: FirestoreDocument[];
+  series?: FirestoreDocument[];
+  films?: FirestoreDocument[];
 }

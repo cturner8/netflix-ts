@@ -90,7 +90,9 @@ const Header: React.FC<Props> & Compound = ({
   ...restProps
 }) => {
   return bg ? (
-    <Background {...restProps}>{children}</Background>
+    <Background data-testid="header-bg" {...restProps}>
+      {children}
+    </Background>
   ) : (
     <>{children}</>
   );
@@ -121,7 +123,10 @@ const HSearchTerm: React.FC<SearchTermProps> = ({
 
   return (
     <Search {...restProps}>
-      <SearchIcon onClick={() => setSearchActive((prevActive) => !prevActive)}>
+      <SearchIcon
+        onClick={() => setSearchActive((prevActive) => !prevActive)}
+        data-testid="search-click"
+      >
         <img src="/images/icons/search.png" alt="Search" />
       </SearchIcon>
       <SearchInput
@@ -129,6 +134,7 @@ const HSearchTerm: React.FC<SearchTermProps> = ({
         onChange={({ target }) => setSearchTerm(target.value)}
         placeholder="Search films and series"
         active={searchActive}
+        data-testid="search-input"
       />
     </Search>
   );

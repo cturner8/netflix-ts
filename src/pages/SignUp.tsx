@@ -63,7 +63,11 @@ export const SignUp = () => {
               onChange={({ target }) => setPassword(target.value)}
               type="password"
             />
-            <Form.Submit disabled={isInvalid} type="submit">
+            <Form.Submit
+              data-testid="sign-up"
+              disabled={isInvalid}
+              type="submit"
+            >
               Sign Up
             </Form.Submit>
             <Form.Text>

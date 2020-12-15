@@ -22,10 +22,11 @@ export const SelectProfileContainer: React.FC<Props> = ({
         </Header.Frame>
       </Header>
 
-      <Profiles>
+      <Profiles data-testid="select-profile">
         <Profiles.Title>Who's watching?</Profiles.Title>
         <Profiles.List>
           <Profiles.User
+            data-testid="user-profile"
             onClick={() =>
               setProfile({
                 displayName: user?.displayName,

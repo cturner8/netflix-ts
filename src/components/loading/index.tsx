@@ -14,7 +14,7 @@ const Loading: React.FC<Props> & Compound = ({ src, ...restProps }) => {
   return (
     <Spinner {...restProps}>
       <LockBody />
-      <Picture src={`images/users/${src}.png`} />
+      <Picture data-testid="loading-picture" src={`images/users/${src}.png`} />
     </Spinner>
   );
 };

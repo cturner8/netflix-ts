@@ -34,7 +34,7 @@ export const SignIn = () => {
       <HeaderContainer>
         <Form>
           <Form.Title>Sign In</Form.Title>
-          {error && <Form.Error>{error}</Form.Error>}
+          {error && <Form.Error data-testid="error">{error}</Form.Error>}
 
           <Form.Base onSubmit={handleSignIn}>
             <Form.Input
@@ -49,7 +49,11 @@ export const SignIn = () => {
               onChange={({ target }) => setPassword(target.value)}
               type="password"
             />
-            <Form.Submit disabled={isInvalid} type="submit">
+            <Form.Submit
+              data-testid="sign-in"
+              disabled={isInvalid}
+              type="submit"
+            >
               Sign In
             </Form.Submit>
             <Form.Text>

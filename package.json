@@ -3,13 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@testing-library/jest-dom": "^5.11.6",
-    "@testing-library/react": "^11.2.2",
-    "@testing-library/user-event": "^12.2.2",
-    "@types/jest": "^26.0.15",
-    "@types/node": "^12.19.7",
-    "@types/react": "^16.14.2",
-    "@types/react-dom": "^16.9.10",
     "firebase": "^8.1.1",
     "fuse.js": "^6.4.3",
     "normalize.css": "^8.0.1",
@@ -24,13 +17,43 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
+    "test": "react-scripts test --coverage --watchAll",
     "eject": "react-scripts eject"
   },
   "eslintConfig": {
     "extends": [
       "react-app",
       "react-app/jest"
+    ]
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "<rootDir>/src/**/*.tsx",
+      "<rootDir>/src/**/*.ts",
+      "!<rootDir>/src/helpers/routes.tsx",
+      "!<rootDir>/src/lib/firebase.ts",
+      "!<rootDir>/src/index.tsx",
+      "!<rootDir>/src/seed.ts",
+      "!<rootDir>/src/utils/index.ts",
+      "!<rootDir>/src/pages/index.tsx",
+      "!<rootDir>/src/global-styles.ts",
+      "!<rootDir>/src/components/index.tsx",
+      "!<rootDir>/src/hooks/*.ts",
+      "!<rootDir>/src/context/*.ts",
+      "!<rootDir>/src/types/*.ts",
+      "!<rootDir>/src/react-app-env.d.ts"
+    ],
+    "coverageThreshold": {
+      "global": {
+        "branches": 90,
+        "functions": 90,
+        "lines": 90,
+        "statements": 90
+      }
+    },
+    "coverageReporters": [
+      "html",
+      "text"
     ]
   },
   "browserslist": {
@@ -47,6 +70,13 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.6",
-    "@types/styled-components": "^5.1.4"
+    "@types/styled-components": "^5.1.4",
+    "@types/jest": "^26.0.15",
+    "@types/node": "^12.19.7",
+    "@types/react": "^16.14.2",
+    "@types/react-dom": "^16.9.10",
+    "@testing-library/jest-dom": "^5.11.6",
+    "@testing-library/react": "^11.2.2",
+    "@testing-library/user-event": "^12.2.2"
   }
 }
